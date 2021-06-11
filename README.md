@@ -9,6 +9,12 @@ The Notebook introduces us to jwt token manipulation. Lots of interesting lesson
 ### CVE References:
 - CVE-2019-5736 
 
+### Lessons:
+
+Amazing learns about JWT token manipulation. Aside from being able to redirect the verification process to our local machine and sign with our own private key. The alternative is the ability to change the JWT token’s alg field to none, which omits the need for a signature in the cookie. Lots of great information in here: https://cyberpolygon.com/materials/security-of-json-web-tokens-jwt/ as well as the actual website for decrypting JWT tokens can be found here: https://jwt.io/ 
+Additionally, here is a great website to convert base64 and encode it: https://www.base64encode.org/ also there seems to be a brute-forcing tool for jwt tokens on github here: https://github.com/ticarpi/jwt_tool/ 
+Getting the root flag is as usual with first issuing the sudo -l command and using a docker exec exploit against it: https://github.com/Frichetten/CVE-2019-5736-PoC The exploit may be found here and all we need to do is manipulate the payload variable in order for it to execute our commands. Also another good look into transferring files using netcat. 
+
 **-------------------------------------------------------------------------------------------------------------------------------**
 
 ### Important Commands:
@@ -54,8 +60,3 @@ This should result in producing a compiled file called just main. Start a mini h
 
 **-------------------------------------------------------------------------------------------------------------------------------**
 
-### Lessons:
-
-Amazing learns about JWT token manipulation. Aside from being able to redirect the verification process to our local machine and sign with our own private key. The alternative is the ability to change the JWT token’s alg field to none, which omits the need for a signature in the cookie. Lots of great information in here: https://cyberpolygon.com/materials/security-of-json-web-tokens-jwt/ as well as the actual website for decrypting JWT tokens can be found here: https://jwt.io/ 
-Additionally, here is a great website to convert base64 and encode it: https://www.base64encode.org/ also there seems to be a brute-forcing tool for jwt tokens on github here: https://github.com/ticarpi/jwt_tool/ 
-Getting the root flag is as usual with first issuing the sudo -l command and using a docker exec exploit against it: https://github.com/Frichetten/CVE-2019-5736-PoC The exploit may be found here and all we need to do is manipulate the payload variable in order for it to execute our commands. Also another good look into transferring files using netcat. 
